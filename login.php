@@ -271,7 +271,7 @@
 			</div>
 		</div>
 	</div>
-
+<!--Form login -->
 <div class="container">
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
@@ -279,7 +279,7 @@
 				<h3>Entrar</h3>
 			</div>
 			<div class="card-body">
-				<form>
+				<form action="logar.php" method="POST">
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
