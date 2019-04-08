@@ -1,4 +1,4 @@
-# ecomerce
+# ecommerce
 
 PROJETO BRAZIL GAMING WORLD
 
