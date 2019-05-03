@@ -99,14 +99,6 @@
 							</li>
 
 							<li>
-								<a href="blog.html">Blog</a>
-							</li>
-
-							<li>
-								<a href="about.html">Sobre Nós</a>
-							</li>
-
-							<li>
 								<a href="contact.html">Contato</a>
 							</li>
 						</ul>
@@ -205,14 +197,6 @@
 
 				<li>
 					<a href="shoping-cart.html">Ver Carrinho</a>
-				</li>
-
-				<li>
-					<a href="blog.html">Blog</a>
-				</li>
-
-				<li>
-					<a href="about.html">Sobre Nós</a>
 				</li>
 
 				<li>
