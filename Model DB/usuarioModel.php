@@ -2,8 +2,8 @@
 
 namespace EcommerceModel;
 
-require("classePadrao/conexao/conexao.class.php");
-require("classePadrao/IniFile.class.php");
+require_once("classePadrao/conexao/conexao.class.php");
+require_once("classePadrao/IniFile.class.php");
 
 use EcommerceConection\Conexao;
 use EcommerceConection\IniFile;
@@ -19,6 +19,14 @@ class UsuarioModel extends Conexao{
     private $cpf;
     private $dataInclusao;
     private $indAtivo;
+
+    /*Dados de endereço*/
+    private $tipoEnderecoId;
+    private $logradouro;
+    private $numero;
+    private $cep;
+    private $bairro;
+    private $cidade;
 
     private $parametros = array();
     
@@ -51,6 +59,31 @@ class UsuarioModel extends Conexao{
     private function getDataInclusao() {
         return $this->dataInclusao;
     }
+
+    /*Dados do endereco*/
+    public function getTipoEnderecoId() {
+        return $this->tipoEnderecoId;
+    }
+
+    public function getLogradouro() {
+        return $this->logradouro;
+    }
+
+    public function getNumero() {
+        return $this->numero;
+    }
+
+    public function getCep() {
+        return $this->cep;
+    }
+
+    public function getBairro(){
+        return $this->bairro;
+    }
+
+    public function getCidade(){
+        return $this->cidade;
+    }
     
     /************************/
 
@@ -78,8 +111,33 @@ class UsuarioModel extends Conexao{
         $this->indAtivo = $newIndAtivo;
     }
     
-    private function setDataInclusao($newDataInclusao) {
+    public function setDataInclusao($newDataInclusao) {
         $this->dataInclusao = $newDataInclusao;
+    }
+
+    /*Dados do endereco*/
+    public function setTipoEnderecoId($newTipoEnderecoId) {
+        $this->tipoEnderecoId = $newTipoEnderecoId;
+    }
+
+    public function setLogradouro($newLogradouro) {
+        $this->logradouro = $newLogradouro;
+    }
+
+    public function setNumero($newNumero) {
+        $this->numero = $newNumero;
+    }
+
+    public function setCep($newCep) {
+        $this->cep = $newCep;
+    }
+
+    public function setBairro($newBairro){
+        $this->bairro = $newBairro;
+    }
+
+    public function setCidade($newCidade){
+        $this->cidade = $newCidade;
     }
 
 
@@ -111,41 +169,69 @@ class UsuarioModel extends Conexao{
         
         if( !is_null( $this->getUsuarioId()) and !empty( $this->getUsuarioId()) )
             $this->parametros[$qtdParametros++] = $this->getUsuarioId();
-
         
         if( !is_null( $this->getNomeUsuario()) and !empty( $this->getNomeUsuario()) )
             $this->parametros[$qtdParametros++] = $this->getNomeUsuario();
             
-        
         if( !is_null($this->getEmail()) and !empty($this->getEmail()) )
             $this->parametros[$qtdParametros++] = $this->getEmail();
-        
-       
+    
         if( !is_null($this->getSenha()) and !empty($this->getSenha()) )
             $this->parametros[$qtdParametros++] = $this->getSenha();
-        
         
         if( !is_null( $this->getCPF()) and !empty( $this->getCPF()) )
             $this->parametros[$qtdParametros++] = $this->getCPF();
         
-        
+        /*Dados de endereço */
         if( !is_null( $this->getDataInclusao()) and !empty( $this->getDataInclusao()) )
             $this->parametros[$qtdParametros++] = $this->getDataInclusao();
 
         if( !is_null( $this->getIndAtivo()) and !empty( $this->getIndAtivo()) )
-        $this->parametros[$qtdParametros++] = $this->getIndAtivo();
+            $this->parametros[$qtdParametros++] = $this->getIndAtivo();
+
+        if( !is_null( $this->getIndAtivo()) and !empty( $this->getIndAtivo()) )
+            $this->parametros[$qtdParametros++] = $this->getIndAtivo();
+
+        if( !is_null( $this->getTipoEnderecoId()) and !empty( $this->getTipoEnderecoId()) )
+            $this->parametros[$qtdParametros++] = $this->getTipoEnderecoId();
+
+        if( !is_null( $this->getLogradouro()) and !empty( $this->getLogradouro()) )
+            $this->parametros[$qtdParametros++] = $this->getLogradouro();
+
+        if( !is_null( $this->getNumero()) and !empty( $this->getNumero()) )
+            $this->parametros[$qtdParametros++] = $this->getNumero();
+        
+        if( !is_null( $this->getCep()) and !empty( $this->getCep()) )
+            $this->parametros[$qtdParametros++] = $this->getCep();
+        
+        if( !is_null( $this->getBairro()) and !empty( $this->getBairro()) )
+            $this->parametros[$qtdParametros++] = $this->getBairro();
+
+        if( !is_null( $this->getCidade()) and !empty( $this->getCidade()) )
+            $this->parametros[$qtdParametros++] = $this->getCidade();
     }
 
     public function autenticarUsuario() {
         $this->setColunas();
         try
         {
-            return $retorno = $this->pesquisar($this->parametros);
+            return $this->pesquisar($this->parametros);
         }
         catch(Exception $e)
         {
-            //echo $e->getMessage();
             throw new Exception("Usuario e/ou senha incorretos, tente novamente");
+        }
+    }
+
+    public function cadastrarUsuario() {
+        $this->setColunas();
+        try
+        {
+            return $this->inserir($this->parametros);
+        }
+        catch(Exception $e)
+        {
+            throw new Exception("Não foi possível realizar o cadastro, tente novamente mais tarde");
         }
     }
 }
