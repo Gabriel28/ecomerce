@@ -1,3 +1,7 @@
+<?php
+require("../Controller/tipoEnderecoController.php");
+use EcommerceController\TipoEnderecoController;
+?>
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -53,11 +57,15 @@
         <!--- dados do cadastro -->
 
         <hr>
-        <form class="needs-validation" novalidate id="cadastroUsuario">
+        <form class="needs-validation" novalidate id="cadastroUsuario" action="../Controller/cadastroController.php" method="POST">
+            <div class="input-group form-group">
+                <input type="hidden" name="origem" class="form-control" value="cadastrar">
+            </div>
+
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                     <label for="primeiroNome">Nome</label>
-                    <input type="text" name="primeiroNome" class="form-control" id="primeiroNome" placeholder="Seu primeiro nome" required>
+                    <input type="text" name="primeiroNome[required]" class="form-control" id="primeiroNome" placeholder="Seu primeiro nome" required>
                     
                     <div class="invalid-feedback">
                         Por favor, preenche o seu nome
@@ -66,7 +74,7 @@
 
                 <div class="col-md-4 mb-3">
                     <label for="sobrenome">Sobrenome</label>
-                    <input type="text" name="sobreNome" class="form-control" id="sobrenome" placeholder="Seu sobrenome" required>
+                    <input type="text" name="sobreNome[required]" class="form-control" id="sobrenome" placeholder="Seu sobrenome" required>
                     
                     <div class="invalid-feedback">
                         Por favor, preenche o seu sobrenome
@@ -75,7 +83,7 @@
 
                 <div class="col-md-4 mb-3">
                     <label for="cpf">CPF</label>
-                    <input type="text" name="cpf" class="form-control cpf" id="cpf" placeholder="000.000.000-00" required>
+                    <input type="text" name="cpf[required]" class="form-control cpf" id="cpf" placeholder="000.000.000-00" required>
                     <div class="invalid-feedback">
                         Por favor, preencha o seu CPF
                     </div>
@@ -86,7 +94,7 @@
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                     <label for="email">E-mail</label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Ex: joaozinho@seudominio.com.br" required maxlength="100">
+                    <input type="email" name="email[required]" class="form-control" id="email" placeholder="Ex: joaozinho@seudominio.com.br" required maxlength="100">
                     <div class="invalid-feedback">
                         Por favor, preencha seu e-mail
                     </div>
@@ -94,7 +102,7 @@
 
                 <div class="col-md-3 mb-3">
                     <label for="senha">Senha</label>
-                    <input type="password" name="senha" class="form-control" id="senha" placeholder="Digite aqui a sua senha" required>
+                    <input type="password" name="senha[required]" class="form-control" id="senha" placeholder="Digite aqui a sua senha" required>
                     <div class="invalid-feedback">
                         Por favor, informe uma senha
                     </div>
@@ -108,7 +116,7 @@
             <div class="form-row">
                 <div class="col-md-2 mb-2">
                     <label for="cep">Cep</label>
-                    <input type="text" name="cep" class="form-control" id="cep" placeholder="Digite o seu CEP" required maxlength="8">
+                    <input type="text" name="cep[required]" class="form-control" id="cep" placeholder="Digite o seu CEP" required maxlength="9">
                     <div class="invalid-feedback">
                         Por favor, informe o CEP
                     </div>
@@ -116,17 +124,31 @@
 
                 <div class="col-md-2">
                     <label for="tipoLogradouro">Tipo do logradouro</label>
-                    <select class="custom-select" id="tipoLogradouro" name="tipoLogradouro">
+                    <select class="custom-select" id="tipoLogradouro" name="tipoLogradouro[required]">
                         <option selected value="-1">Selecione...</option>
-                        <option value="1">Oaaaaaaaaaaaaaaaane</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <?php
+                            
+                        $tipoEndereco = new TipoEnderecoController();
+                        try {
+                                $tipoEnderecos = $tipoEndereco->getTiposEnderecos();
+                                foreach ($tipoEnderecos as $tipoLogradouros):
+                        ?>  
+                                    <option value="<?php echo $tipoLogradouros['tipoEnderecoId'] ?>">
+                                        <?php echo $tipoLogradouros['tipoEndereco'] ?>
+                                    </option>
+                        <?php
+                                endforeach;
+                            } catch (Exceptio $th){
+                                echo '<option value="-2">Não foi possível carregar a coleção</option>';
+                            }
+   
+                        ?>
                     </select>
                 </div>
                 
                 <div class="col-md-3 mb-3">
                     <label for="logradouro">Logradouro</label>
-                    <input type="text" name="logradouro" class="form-control" id="logradouro" placeholder="Digite o seu logradouro" required maxlength="45">
+                    <input type="text" name="logradouro[required]" class="form-control" id="logradouro" placeholder="Digite o seu logradouro" required maxlength="45">
                     <div class="invalid-feedback">
                         Por favor, informe o logradouro
                     </div>
@@ -134,7 +156,7 @@
 
                 <div class="col-md-2 mb-2">
                     <label for="numero">Número</label>
-                    <input type="text" name="numero" class="form-control" id="numero" placeholder="Digite o número" required maxlength="6">
+                    <input type="text" name="numero[required]" class="form-control" id="numero" placeholder="Digite o número" required maxlength="6">
                     <div class="invalid-feedback">
                         Por favor, informe o logradouro
                     </div>
@@ -144,7 +166,7 @@
             <div class="form-row">
                 <div class="col-md-3 mb-3">
                     <label for="bairro">Bairro</label>
-                    <input type="text" name="bairro" class="form-control" id="bairro" placeholder="Digite o bairro" required maxlength="45">
+                    <input type="text" name="bairro[required]" class="form-control" id="bairro" placeholder="Digite o bairro" required maxlength="45">
                     <div class="invalid-feedback">
                         Por favor, informe o bairro
                     </div>
@@ -152,7 +174,7 @@
 
                 <div class="col-md-3 mb-3">
                     <label for="cidade">Cidade</label>
-                    <input type="text" name="cidade" class="form-control" id="cidade" placeholder="Digite a cidade" required maxlength="45">
+                    <input type="text" name="cidade[required]" class="form-control" id="cidade" placeholder="Digite a cidade" required maxlength="45">
                     <div class="invalid-feedback">
                         Por favor, informe a cidade
                     </div>

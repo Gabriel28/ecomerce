@@ -47,8 +47,7 @@ session_start();?>
 					<?php
 						if(!empty($_SESSION)) {
 							echo <<<LOGOUT
-							<form id="logout" action="../Controller/loginController.php" method="POST">
-								
+							<form id="logout" action="../Controller/loginController.php" method="POST" style="margin-left:-10px;">
 								<a href="#" class="flex-c-m trans-04 p-lr-25" onclick="document.getElementById('logout').submit();">Logout</a>
 								<input type="hidden" name="origem" class="form-control" value="deslogar"/>
 							</form>
@@ -189,6 +188,7 @@ LOGOUT;
 							</form>
 LOGOUT;
 						}
+
 					?>
 				</div>
 			</li>
