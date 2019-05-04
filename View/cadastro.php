@@ -1,112 +1,159 @@
-<?php include("cabecalho.php"); ?>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+	<title>HOME - BRAZIL GAMING WORLD</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<h3>Cadastro de cliente</h3>
-<!--- dados do cadastro -->
+	<link rel="alternate" type="text/html" title="Página Inicial" hreflang="pt" href="/pt/ecomerce/index.html" />
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="../public/images/icons/favicon.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../public/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../public/fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../public/fonts/linearicons-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="../vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="../vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../vendor/slick/slick.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../vendor/MagnificPopup/magnific-popup.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../public/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../public/css/main.css">
 
-<hr>
+<!--===============================================================================================-->
+</head>
+<body>
+    <!-- Header -->
+	<header>
 
-<form name="cadcliente" id="cadcliente" method="post" action="">
+	<!-- Nav bar -->
+	<?php include_once("Template/navbar.php"); ?>
+	</header>
 
-    <section class="row" id="cadastro">
-        <div class="col-sm-6">
-            <label>Nome:</label>
-            <input type="text" name="cli_nome" class="form-control" minlength="3" required>
-        </div>
+    <h3>Cadastro de cliente</h3>
+    <!--- dados do cadastro -->
 
-        <div class="col-sm-6">
-            <label>Sobrenome:</label>
-            <input type="text" name="cli_sobrenome" class="form-control"  minlength="3" required>            
-        </div>
-    
-        <div class="col-sm-6">
-            <label>Data Nasc:</label>
-            <input type="date" name="cli_data_nasc" class="form-control" placeholder="dd/mm/aaaa" required>        
-        </div>
-        
-        <div class="col-sm-6">
-            <label>RG:</label>
-            <input type="text" name="cli_rg" class="form-control" required>    
-        </div>
-    
-        <div class="col-sm-6">
-            <label>CPF:</label>
-            <input type="text" name="cli_cpf" class="form-control" minlength="11" maxlength="11" required>        
-        </div>
+    <hr>
 
-        <div class="col-sm-6">
-            <label>DDD:</label>
-            <input type="number" name="cli_ddd" class="form-control"  min="10" max="99" required>
-                        
-        </div>
-    
-        <div class="col-sm-6">
-            <label>Fone:</label>
-            <input type="number" name="cli_fone" class="form-control" required>
-                    
-        </div>
+    <form name="cadcliente" id="cadcliente" method="post" action="">
 
-        <div class="col-sm-6">
-            <label>Celular:</label>
-            <input type="number" name="cli_celular" class="form-control" required>
-            
-            
-        </div>
-      
-        <div class="col-sm-6">
-            <label>Endereço:</label>
-            <input type="text" name="cli_endereco" class="form-control"  minlength="3" required>
-            
-            
-        </div>
-        
-        <div class="col-sm-6">
-            <label>Numero:</label>
-            <input type="text" name="cli_numero" class="form-control" required>    
-            
-        </div>
-        
-        <div class="col-sm-6">
-            <label>Bairro:</label>
-            <input type="text" name="cli_bairro" class="form-control" minlength="3" required>
-                
-        </div>
-        
-        <div class="col-sm-6">
-            <label>Cidade:</label>
-            <input type="text" name="cli_cidade" class="form-control" minlength="3" required>
-                
-        </div>
-        
-        <div class="col-sm-6">
-            <label>UF:</label>
-            <input type="text" name="cli_uf" class="form-control" maxlength="2" minlength="2" required>    
-        </div>
-        
-        <div class="col-sm-6">
-            <label>Cep:</label>           
-            <input type="text" name="cli_cep" class="form-control" minlength="8" maxlength="8" required>
-        </div>
-    
-        <div class="col-sm-6">
-            <label>Email:</label>
-            <input type="email" name="cli_email" class="form-control" required>        
-        </div>
-
-        <div class="col-sm-6">
-            <label>Senha:</label>
-            <input type="password" name="cli_senha" class="form-control" required>
-        </div>
-    
-    </section>
-        <section class="row" id="btngravar">  
-            <div class="col-sm-8">    
-                <div class="col-sm-6">
-                <button type="submit" class="btn btn-info btn-block "> <i class="glyphicon glyphicon-ok"></i> Gravar </button>   
+        <section class="row" id="cadastro">
+            <div class="col-sm-6">
+                <label>Nome:</label>
+                <input type="text" name="cli_nome" class="form-control" minlength="3" required>
             </div>
-        </div>   
 
-        <div class="col-sm-6"></div>
+            <div class="col-sm-6">
+                <label>Sobrenome:</label>
+                <input type="text" name="cli_sobrenome" class="form-control"  minlength="3" required>            
+            </div>
+        
+            <div class="col-sm-6">
+                <label>Data Nasc:</label>
+                <input type="date" name="cli_data_nasc" class="form-control" placeholder="dd/mm/aaaa" required>        
+            </div>
+            
+            <div class="col-sm-6">
+                <label>RG:</label>
+                <input type="text" name="cli_rg" class="form-control" required>    
+            </div>
+        
+            <div class="col-sm-6">
+                <label>CPF:</label>
+                <input type="text" name="cli_cpf" class="form-control" minlength="11" maxlength="11" required>        
+            </div>
 
+            <div class="col-sm-6">
+                <label>DDD:</label>
+                <input type="number" name="cli_ddd" class="form-control"  min="10" max="99" required>
+                            
+            </div>
+        
+            <div class="col-sm-6">
+                <label>Fone:</label>
+                <input type="number" name="cli_fone" class="form-control" required>
+                        
+            </div>
+
+            <div class="col-sm-6">
+                <label>Celular:</label>
+                <input type="number" name="cli_celular" class="form-control" required>
+                
+                
+            </div>
+        
+            <div class="col-sm-6">
+                <label>Endereço:</label>
+                <input type="text" name="cli_endereco" class="form-control"  minlength="3" required>
+                
+                
+            </div>
+            
+            <div class="col-sm-6">
+                <label>Numero:</label>
+                <input type="text" name="cli_numero" class="form-control" required>    
+                
+            </div>
+            
+            <div class="col-sm-6">
+                <label>Bairro:</label>
+                <input type="text" name="cli_bairro" class="form-control" minlength="3" required>
+                    
+            </div>
+            
+            <div class="col-sm-6">
+                <label>Cidade:</label>
+                <input type="text" name="cli_cidade" class="form-control" minlength="3" required>
+                    
+            </div>
+            
+            <div class="col-sm-6">
+                <label>UF:</label>
+                <input type="text" name="cli_uf" class="form-control" maxlength="2" minlength="2" required>    
+            </div>
+            
+            <div class="col-sm-6">
+                <label>Cep:</label>           
+                <input type="text" name="cli_cep" class="form-control" minlength="8" maxlength="8" required>
+            </div>
+        
+            <div class="col-sm-6">
+                <label>Email:</label>
+                <input type="email" name="cli_email" class="form-control" required>        
+            </div>
+
+            <div class="col-sm-6">
+                <label>Senha:</label>
+                <input type="password" name="cli_senha" class="form-control" required>
+            </div>
+        
         </section>
-    </form>
-<?php include("rodape.php"); 
+            <section class="row" id="btngravar">  
+                <div class="col-sm-8">    
+                    <div class="col-sm-6">
+                    <button type="submit" class="btn btn-info btn-block "> <i class="glyphicon glyphicon-ok"></i> Gravar </button>   
+                </div>
+            </div>   
+
+            <div class="col-sm-6"></div>
+
+            </section>
+        </form>
+
+    <?php include("Template/rodape.php"); 

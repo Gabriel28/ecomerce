@@ -1,0 +1,151 @@
+<?php
+
+namespace EcommerceModel;
+
+require("classePadrao/conexao/conexao.class.php");
+require("classePadrao/IniFile.class.php");
+
+use EcommerceConection\Conexao;
+use EcommerceConection\IniFile;
+
+//outras Exceptions
+use Exception;
+
+class UsuarioModel extends Conexao{
+    private $usuarioId;
+    private $nomeUsuario;
+    private $email;
+    private $senha;
+    private $cpf;
+    private $dataInclusao;
+    private $indAtivo;
+
+    private $parametros = array();
+    
+    
+    /*Encapsulamento Get's e Set's*/
+    public function getUsuarioId() {
+        return $this->usuarioId;
+    }
+
+    public function getNomeUsuario() {
+        return  $this->nomeUsuario;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function getSenha() {
+        return $this->senha;
+    }
+
+    public function getCPF() {
+        return $this->cpf;
+    }
+
+    public function getIndAtivo() {
+        return  $this->indAtivo;
+    }
+    
+    private function getDataInclusao() {
+        return $this->dataInclusao;
+    }
+    
+    /************************/
+
+    public function setUsuarioId($newUsuarioId) {
+        $this->usuarioId = $newUsuarioId;
+    }
+
+    public function setNomeUsuario($newNomeUsuario) {
+        $this->nomeUsuario = $newNomeUsuario;
+    }
+
+    public function setEmail($newEmail) {
+        $this->email = $newEmail;
+    }
+
+    public function setSenha($newSenha) {
+        $this->senha = $newSenha;
+    }
+
+    public function setCPF($newCPF) {
+        $this->cpf = $newCPF;
+    }
+
+    public function setIndAtivo($newIndAtivo) {
+        $this->indAtivo = $newIndAtivo;
+    }
+    
+    private function setDataInclusao($newDataInclusao) {
+        $this->dataInclusao = $newDataInclusao;
+    }
+
+
+    public function __construct($iniConfigBD) {
+        try{
+           $this->_configDB = IniFile::readIniFile($iniConfigBD);
+        }
+        catch (Exception $e){   
+            throw $e;
+        }
+
+        $this->selectProcedure = 'pr_login_sel';
+        $this->updateProcedure = '';
+        $this->insertProcedure = 'pr_usuario_ins';
+        $this->deleteProcedure = '';
+    }
+
+    public function __destruct() {
+        $this->_configDB = NULL;
+        $this->selectProcedure = NULL;
+        $this->updateProcedure = NULL;
+        $this->insertProcedure = NULL;
+        $this->deleteProcedure = NULL;
+        $this->fecharConexao(); //na desconstrução do objeto, fecha-se a conexão com o BD
+    }
+
+    protected function setColunas() {
+        $qtdParametros = 0;
+        
+        if( !is_null( $this->getUsuarioId()) and !empty( $this->getUsuarioId()) )
+            $this->parametros[$qtdParametros++] = $this->getUsuarioId();
+
+        
+        if( !is_null( $this->getNomeUsuario()) and !empty( $this->getNomeUsuario()) )
+            $this->parametros[$qtdParametros++] = $this->getNomeUsuario();
+            
+        
+        if( !is_null($this->getEmail()) and !empty($this->getEmail()) )
+            $this->parametros[$qtdParametros++] = $this->getEmail();
+        
+       
+        if( !is_null($this->getSenha()) and !empty($this->getSenha()) )
+            $this->parametros[$qtdParametros++] = $this->getSenha();
+        
+        
+        if( !is_null( $this->getCPF()) and !empty( $this->getCPF()) )
+            $this->parametros[$qtdParametros++] = $this->getCPF();
+        
+        
+        if( !is_null( $this->getDataInclusao()) and !empty( $this->getDataInclusao()) )
+            $this->parametros[$qtdParametros++] = $this->getDataInclusao();
+
+        if( !is_null( $this->getIndAtivo()) and !empty( $this->getIndAtivo()) )
+        $this->parametros[$qtdParametros++] = $this->getIndAtivo();
+    }
+
+    public function autenticarUsuario() {
+        $this->setColunas();
+        try
+        {
+            return $retorno = $this->pesquisar($this->parametros);
+        }
+        catch(Exception $e)
+        {
+            //echo $e->getMessage();
+            throw new Exception("Usuario e/ou senha incorretos, tente novamente");
+        }
+    }
+}
