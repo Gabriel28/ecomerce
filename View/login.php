@@ -103,10 +103,10 @@ if (!empty($_SESSION)) {
 				</div>
 				<div class="card-footer">
 					<div class="d-flex justify-content-center links">
-						Não tem conta? <a href="#"> Cadastre-se!</a>
+						Não tem conta? <a href="cadastro.php" style="color:#FF8C00"> Cadastre-se!</a>
 					</div>
 					<div class="d-flex justify-content-center">
-						<a href="esqueceuSenha.php">Esqueci minha senha</a>
+						<a href="esqueceuSenha.php" style="color:#FF8C00">Esqueci minha senha</a>
 					</div>
 				</div>
 			</div>
