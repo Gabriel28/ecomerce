@@ -13,7 +13,7 @@ if (!empty($_SESSION)) {
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-	<title>HOME - BRAZIL GAMING WORLD</title>
+	<title>LOGIN - BRAZIL GAMING WORLD</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -103,10 +103,10 @@ if (!empty($_SESSION)) {
 				</div>
 				<div class="card-footer">
 					<div class="d-flex justify-content-center links">
-						Não tem conta? <a href="#"> Cadastre-se!</a>
+						Não tem conta? <a href="cadastro.php"> Cadastre-se!</a>
 					</div>
 					<div class="d-flex justify-content-center">
-						<a href="#">Esqueci minha senha</a>
+						<a href="esqueceuSenha.php">Esqueci minha senha</a>
 					</div>
 				</div>
 			</div>
