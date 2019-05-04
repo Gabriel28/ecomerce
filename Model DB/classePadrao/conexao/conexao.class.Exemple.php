@@ -102,7 +102,7 @@ namespace EcommerceConection{
                 if (!$this->estaConectadoBD())
                     //Conecto no servidor caso esteja desconectado
                     $this->abrirConexao();
-
+                    
                 //echo $this->preparaChamadaProcedure($this->selectProcedure, count($arrayParameters));
                 //var_dump($arrayParameters);
                 $stmt = $this->dbConexao->
@@ -113,6 +113,7 @@ namespace EcommerceConection{
 
                 $stmt->execute($arrayParameters);
                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                
                 if($stmt->rowCount() > 0) {
                     return $stmt = $stmt->fetchAll();
                 }else

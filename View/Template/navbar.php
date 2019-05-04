@@ -78,11 +78,14 @@ LOGOUT;
 						<li class="label1" data-label1="HOT">
 							<a href="produtos.php"> Todos os Games</a>
 						</li>
-
-						<li>
-							<a href="carrinho.php">Ver Carrinho</a>
-						</li>
-
+						<?php
+							if(!empty($_SESSION)) {
+								echo "
+								<li>
+									<a href='carrinho.php'>Ver Carrinho</a>
+								</li>";
+							}
+						?>
 						<li>
 							<a href="contato.php">Contato</a>
 						</li>
@@ -90,15 +93,17 @@ LOGOUT;
 				</div>	
 
 				<!-- Icon header -->
-				<div class="wrap-icon-header flex-w flex-r-m">
-					
-
-					<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="0">
-						<i class="zmdi zmdi-shopping-cart"></i>
-					</div>
-
-					
+				<div class="wrap-icon-header flex-w flex-r-m">	
+					<?php
+						if(!empty($_SESSION)) {
+							echo "
+							<div class='icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart' data-notify='0'>
+								<i class='zmdi zmdi-shopping-cart'></i>
+							</div>";
+						}
+					?>	
 				</div>
+				
 			</nav>
 		</div>	
 	</div>
@@ -111,15 +116,18 @@ LOGOUT;
 		</div>
 
 		<!-- Icon -->
-		<div class="wrap-icon-header flex-w flex-r-m m-r-15">
-			
-
-			<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="0">
-				<i class="zmdi zmdi-shopping-cart"></i>
-			</div>
-
-			
+		<div class="wrap-icon-header flex-w flex-r-m">	
+				<?php
+					if(!empty($_SESSION)) {
+						echo "
+						<div class='icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart' data-notify='0'>
+							<i class='zmdi zmdi-shopping-cart'></i>
+						</div>";
+					}
+				?>	
 		</div>
+		
+	
 
 		<!-- Botão de menu -->
 		<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
@@ -198,9 +206,14 @@ LOGOUT;
 				<a href="produtos.php" class="label1 rs1" data-label1="HOT">Todos os Games</a>
 			</li>
 
-			<li>
-				<a href="carrinho.html">Ver Carrinho</a>
-			</li>
+			<?php
+				if(!empty($_SESSION)) {
+					echo "
+					<li>
+						<a href='carrinho.php'>Ver Carrinho</a>
+					</li>";
+				}
+			?>
 
 			<li>
 				<a href="contato.php">Contato</a>
