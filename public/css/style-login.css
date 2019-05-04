@@ -71,7 +71,7 @@ margin-right: 5px;
 .login_btn{
 color: black;
 background-color: darkorange;
-width: 100px;
+width: auto;
 }
 
 .login_btn:hover{
@@ -86,3 +86,8 @@ color: white;
 .links a{
 margin-left: 4px;
 }
+
+.esqSenha{
+padding-top: 40px;
+}
+
