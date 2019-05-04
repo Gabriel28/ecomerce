@@ -2,13 +2,13 @@
 
 namespace EcommerceController;
 
-require("../Model DB/usuarioModel.php");
+require_once("../Model DB/usuarioModel.php");
 use EcommerceModel\UsuarioModel;
 
 //outras Exceptions
 use Exception;
 
-if(!empty($_POST)) {
+if($_POST) {
 
     switch ($_POST['origem']) {
         case 'logar':
@@ -35,13 +35,9 @@ if(!empty($_POST)) {
             $controller->deslogarUsuario();
             break;
         default:
-            echo 'ai'    ;
-        //header("location:../View/login.phperror=acao");
+            header("location:../View/login.php?error=acao");
             break;
     }
-}
-else {
-    header("location:../View/login.php");
 }
 
 
