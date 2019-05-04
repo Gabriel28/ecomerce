@@ -13,7 +13,7 @@ if (!empty($_SESSION)) {
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-	<title>HOME - BRAZIL GAMING WORLD</title>
+	<title>LOGIN - BRAZIL GAMING WORLD</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -77,15 +77,15 @@ if (!empty($_SESSION)) {
 
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
+								<span class="input-group-text"><i class="fa fa-envelope"></i></span>
 							</div>
-							<input type="text" name="email" class="form-control" placeholder="Digite seu e-mail">
+							<input type="text" name="email" class="form-control" placeholder="Digite seu e-mail" required>
 							
 						</div>
 
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
+								<span class="input-group-text"><i class="fa fa-lock"></i></span>
 							</div>
 							<input type="password" name="senha" class="form-control" placeholder="Digite sua senha">
 						</div>
@@ -106,7 +106,7 @@ if (!empty($_SESSION)) {
 						Não tem conta? <a href="#"> Cadastre-se!</a>
 					</div>
 					<div class="d-flex justify-content-center">
-						<a href="#">Esqueci minha senha</a>
+						<a href="esqueceuSenha.php">Esqueci minha senha</a>
 					</div>
 				</div>
 			</div>
