@@ -8,7 +8,7 @@ define('VALOR_DOLAR_EUA', 3.941);
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-	<title>HOME - BRAZIL GAMING WORLD</title>
+	<title>PRODUTOS - BRAZIL GAMING WORLD</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
