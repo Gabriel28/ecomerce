@@ -1,3 +1,10 @@
+<?php
+require_once("../Controller/produtoController.php");
+use EcommerceController\ProdutoController;
+
+define('VALOR_DOLAR_EUA', 3.941);
+?>
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -42,9 +49,8 @@
     <!-- Header -->
 	<header>
 
-	<!-- Nav bar -->
-	<?php include_once("Template/navbar.php"); ?>
-	</header>
+		<!-- Nav bar -->
+		<?php include_once("Template/navbar.php"); ?>
 
 		<!-- Modal Search -->
 		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
@@ -343,29 +349,57 @@
 				</div>
 			</div>
 
+			<?php
+				//Vou buscar os produtos na base de dados
+				$produtos = new ProdutoController();
+				try {
+					$produtosRetornado = $produtos->buscarProdutos();
+				} catch (Exception $e) {
+					//Se deu erro, eu imprimo um alert e mato o programa
+					$erro = $e->getMessage();
+
+					echo <<< ALERTA_ERRO
+					<div class="alert alert-danger" role="alert">
+						<h4 class="alert-heading">Desculpe, mas parece que houve um problema</h4>
+						<p>
+							$erro
+						</p>
+					</div>
+ALERTA_ERRO;
+					die();
+				}
+			?>
+
 			<div class="row isotope-grid">
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ps4">
+				<?php
+					
+					foreach ($produtosRetornado as $produto):
+				?>
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item <?= $produto['plataformaAcronimo']?>">
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="../public/images/produto-01.jpg" alt="IMG-PRODUCT">
+							<img 
+							src="<?= !is_null($produto['caminhoImagemProduto']) ?
+							$produto['caminhoImagemProduto'] : '../public/images/jogoAnonimo.jpg'?>" 
+							alt="IMG-PRODUCT">
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Clique e Veja!
+								Ampliar&nbsp;<i class="fa fa-search-plus"></i>
 							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									SEKIRO - SHADOWS DIE TWICE
+								<a href="product-detail.php?nomeproduto=<?=$produto['nomeProduto']?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									<?= $produto['nomeProduto']?>
 								</a>
 
 								<span class="stext-105 cl3">
-									R$249,90
+									R$<?= number_format($produto['precoProduto'], 2, ',', '.') ?>
 								</span>
 								<span class="stext-105 cl3">
-									USD $64,78
+									USD $<?= number_format($produto['precoProduto'] / VALOR_DOLAR_EUA, 2, ',', '.') ?>
 								</span>
 							</div>
 
@@ -376,83 +410,20 @@
 								</a>
 							</div>
 						</div>
+						
 					</div>
 				</div>
+				<?php		
+					endforeach;
+				?>
 
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ps4">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img src="../public/images/produto-02.jpg" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Clique e Veja!
-							</a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									God of War 4
-								</a>
-								<span class="stext-105 cl3">
-									R$99,99
-								</span>
-								<span class="stext-105 cl3">
-									USD $25,91
-								</span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="../public/images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="../public/images/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item men">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img src="../public/images/produto-03.jpg" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Clique e Veja!
-							</a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									Gears Of War 4
-								</a>
-								<span class="stext-105 cl3">
-									R$250,02
-								</span>
-								<span class="stext-105 cl3">
-									USD $64,79
-								</span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="../public/images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="../public/images/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-			<!-- Load more -->
-			<div class="flex-c-m flex-w w-full p-t-45">
-				<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-					Load More
-				</a>
-			</div>
+			
+		</div>
+		<!-- Load more -->
+		<div class="flex-c-m flex-w w-full p-t-45 mb-5">
+			<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+				Carregar mais
+			</a>
 		</div>
 	</div>
 		
