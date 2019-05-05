@@ -77,15 +77,15 @@ if (!empty($_SESSION)) {
 
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
+								<span class="input-group-text"><i class="fa fa-envelope"></i></span>
 							</div>
-							<input type="text" name="email" class="form-control" placeholder="Digite seu e-mail">
+							<input type="text" name="email" class="form-control" placeholder="Digite seu e-mail" required>
 							
 						</div>
 
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
+								<span class="input-group-text"><i class="fa fa-lock"></i></span>
 							</div>
 							<input type="password" name="senha" class="form-control" placeholder="Digite sua senha">
 						</div>
@@ -103,10 +103,10 @@ if (!empty($_SESSION)) {
 				</div>
 				<div class="card-footer">
 					<div class="d-flex justify-content-center links">
-						Não tem conta? <a href="cadastro.php"> Cadastre-se!</a>
+						Não tem conta? <a href="cadastro.php" style="color:#FF8C00"> Cadastre-se!</a>
 					</div>
 					<div class="d-flex justify-content-center">
-						<a href="esqueceuSenha.php">Esqueci minha senha</a>
+						<a href="esqueceuSenha.php" style="color:#FF8C00">Esqueci minha senha</a>
 					</div>
 				</div>
 			</div>

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-	<title>RECUPERAR SENHA</title>
+	<title>RECUPERAR SENHA - BRAZIL GAMING WORLD</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -68,14 +68,21 @@
 
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
+								<span class="input-group-text"><i class="fa fa-envelope"></i></i></span>
 							</div>
-							<input type="text" name="email" class="form-control" placeholder="Digite seu e-mail para recuperar a senha">
+							<input type="email" name="email" class="form-control" placeholder="E-mail: abcd@dominio.com">
 							
+            </div>
+                        
+            <div class="input-group form-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fa fa-address-card-o"></i></span>
+							</div>
+							<input type="text" name="cpf[required]" class="form-control cpf" id="cpf" placeholder="CPF: 000.000.000-00" required>
 						</div>
 
-						<div class="form-group">
-							<input type="submit" value="Recuperar senha" class="btn">
+						<div class="form-group col-6">
+							<input type="submit" value="Recuperar senha" class="btn login_btn btn-block">
 						</div>
 
 					</form>
@@ -88,6 +95,10 @@
 				</div>
 			</div>
 		</div>
-	</div>
+    </div>
+
+    <script src="../public/js/validacoes.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+    <script src="../public/js/mascaras.js"></script>
 </body>
 </html>

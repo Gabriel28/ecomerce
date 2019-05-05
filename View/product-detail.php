@@ -703,7 +703,7 @@
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									<a href="product-detail.php" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 										Esprit Ruffle Shirt
 									</a>
 
@@ -735,7 +735,7 @@
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									<a href="product-detail.php" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 										Herschel supply
 									</a>
 
@@ -767,7 +767,7 @@
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									<a href="product-detail.php" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 										Only Check Trouser
 									</a>
 
@@ -799,7 +799,7 @@
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									<a href="product-detail.php" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 										Classic Trench Coat
 									</a>
 
@@ -831,7 +831,7 @@
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									<a href="product-detail.php" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 										Front Pocket Jumper
 									</a>
 
@@ -863,7 +863,7 @@
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									<a href="product-detail.php" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 										Vintage Inspired Classic 
 									</a>
 
@@ -895,7 +895,7 @@
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									<a href="product-detail.php" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 										Shirt in Stretch Cotton
 									</a>
 
@@ -927,7 +927,7 @@
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									<a href="product-detail.php" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 										Pieces Metallic Printed
 									</a>
 
