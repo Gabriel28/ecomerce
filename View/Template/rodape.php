@@ -9,25 +9,25 @@
 
 					<ul>
 						<li class="p-b-10">
-							<a href="produtos.html" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="produtos.php?seach=ps4" class="stext-107 cl7 hov-cl1 trans-04">
 								PS4
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="produtos.php" class="stext-107 cl7 hov-cl1 trans-04">
 								XBOX		
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="produtos.php" class="stext-107 cl7 hov-cl1 trans-04">
 								NINTENDO
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="produtos.php" class="stext-107 cl7 hov-cl1 trans-04">
 								7ª GEN
 							</a>
 						</li>
@@ -41,7 +41,7 @@
 
 					<ul>
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="https://www2.correios.com.br/sistemas/rastreamento/" class="stext-107 cl7 hov-cl1 trans-04">
 								Rastrear Pedido
 							</a>
 						</li>

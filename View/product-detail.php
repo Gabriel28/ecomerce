@@ -4,11 +4,13 @@ use EcommerceController\ProdutoController;
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 <head>
 	<title id="titulo"></title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="alternate" type="text/html" title="Página Inicial" hreflang="pt" href="/pt/ecomerce/index.html" />
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="../public/images/icons/favicon.png"/>
 <!--===============================================================================================-->
@@ -38,16 +40,34 @@ use EcommerceController\ProdutoController;
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../public/css/util.css">
 	<link rel="stylesheet" type="text/css" href="../public/css/main.css">
-	
-	
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
 	
-	<!-- Header -->
-	<header>
+
+<!--===============================================================================================-->
+</head>
+<body>
+    <!-- Header -->
+	<header class="header-v4">
 		<!-- Nav bar -->
 		<?php include_once("Template/navbar.php"); ?>
+
+		<!-- Modal Busca -->
+		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+			<div class="container-search-header">
+				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+					<img src="../public/images/icons/icon-close2.png" alt="CLOSE">
+				</button>
+
+				<form class="wrap-search-header flex-w p-l-15">
+					<button class="flex-c-m trans-04">
+						<i class="zmdi zmdi-search"></i>
+					</button>
+					<input class="plh3" type="text" name="search" placeholder="Search...">
+				</form>
+			</div>
+		</div>
 	</header>
 
 	<!-- Cart -->
@@ -358,6 +378,7 @@ ALERTA_ERRO;
 		</div>
 	</section>
 		
+
 	<?php include_once("Template/rodape.php"); ?>
 
 	<script src="../public/js/queryString.jquery.min.js"></script>
