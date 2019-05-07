@@ -13,6 +13,7 @@ use Exception;
 
 class ProdutoModel extends Conexao{
     private $plataformaId;
+    private $plataformaAcronimo;
     private $produtoId;
     private $nomeProduto;
     private $qtdUnidades;
@@ -50,6 +51,10 @@ class ProdutoModel extends Conexao{
         return $this->plataformaId;
     }
 
+    public function getPlataformaAcronimo() {
+        return $this->plataformaAcronimo;
+    }
+
     public function getProdutoId() {
         return  $this->produtoId;
     }
@@ -78,6 +83,10 @@ class ProdutoModel extends Conexao{
 
     public function setPlataformaId($newPlataformaId) {
         $this->plataformaId = $newPlataformaId;
+    }
+
+    public function setPlataformaAcronimo($newPlataformaAcronimo) {
+        $this->plataformaAcronimo = $newPlataformaAcronimo;
     }
 
     public function setProdutoId($newProdutoId) {
@@ -116,6 +125,11 @@ class ProdutoModel extends Conexao{
         
         if( !is_null( $this->getNomeProduto()) and !empty( $this->getNomeProduto()) )
             $this->parametros[$qtdParametros++] = $this->getNomeProduto();
+        else
+            $this->parametros[$qtdParametros++] = null;
+
+        if( !is_null( $this->getPlataformaAcronimo()) and !empty($this->getPlataformaAcronimo()))
+            $this->parametros[$qtdParametros++] = $this->getPlataformaAcronimo();
         else
             $this->parametros[$qtdParametros++] = null;
 

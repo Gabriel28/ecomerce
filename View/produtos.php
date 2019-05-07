@@ -106,35 +106,52 @@ define('VALOR_DOLAR_EUA', 3.941);
 	<!-- Produto -->
 	<div class="bg0 m-t-23 p-b-140">
 		<div class="container">
+
+		<?php
+				//Vou buscar os produtos na base de dados
+				$produtos = new ProdutoController();
+				try {
+					$produtosRetornado = $produtos->buscarProdutos();
+				} catch (Exception $e) {
+					//Se deu erro, eu imprimo um alert e mato o programa
+					$erro = $e->getMessage();
+
+					echo <<< ALERTA_ERRO
+					<div class="alert alert-danger" role="alert">
+						<h4 class="alert-heading">Desculpe, mas parece que houve um problema</h4>
+						<p>
+							$erro
+						</p>
+					</div>
+ALERTA_ERRO;
+					die();
+				}
+			?>
+
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
 						Todos os Jogos
 					</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".ps4">
-						PS4
+					<?php
+						$ArrayAux = Array();
+						foreach ($produtosRetornado as $produto):
+							if (!in_array($produto['plataformaAcronimo'], $ArrayAux)) { 
+								$ArrayAux[] = $produto['plataformaAcronimo'];
+							}else {
+								continue;
+							}
+					?>
+
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".<?= $produto['plataformaAcronimo']?>">
+						<?= strtoupper($produto['plataformaAcronimo'])?>
 					</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".xone">
-						XBOX	
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".switch">
-						SWITCH
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="x360">
-						XBOX360
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="x360">
-						PS3
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".acessorios">
-						ACESSÓRIOS
-					</button>
+					<?php
+						endforeach;
+						$ArrayAux = null;
+					?>
 				</div>
 
 				<div class="flex-w flex-c-m m-tb-10">
@@ -158,27 +175,6 @@ define('VALOR_DOLAR_EUA', 3.941);
 				</div>
 			</div>
 
-			<?php
-				//Vou buscar os produtos na base de dados
-				$produtos = new ProdutoController();
-				try {
-					$produtosRetornado = $produtos->buscarProdutos();
-				} catch (Exception $e) {
-					//Se deu erro, eu imprimo um alert e mato o programa
-					$erro = $e->getMessage();
-
-					echo <<< ALERTA_ERRO
-					<div class="alert alert-danger" role="alert">
-						<h4 class="alert-heading">Desculpe, mas parece que houve um problema</h4>
-						<p>
-							$erro
-						</p>
-					</div>
-ALERTA_ERRO;
-					die();
-				}
-			?>
-
 			<div class="row isotope-grid">
 				<?php
 					
@@ -200,7 +196,7 @@ ALERTA_ERRO;
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.php?nomeproduto=<?=$produto['nomeProduto']?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+								<a href="product-detail.php?nomeproduto=<?=$produto['nomeProduto']?>&plataforma=<?= $produto['plataformaAcronimo']?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									<?= $produto['nomeProduto']?>
 								</a>
 
@@ -237,4 +233,4 @@ ALERTA_ERRO;
 	</div>
 		
 
-<<?php include_once("Template/rodape.php"); ?>
+<?php include_once("Template/rodape.php"); ?>

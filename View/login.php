@@ -49,7 +49,8 @@ if (!empty($_SESSION)) {
 	<link rel="stylesheet" type="text/css" href="../public/css/main.css">
 	  
   <!--CSS personalizado styles-->
-  <link rel="stylesheet" type="text/css" href="../public/css/style-login.css" >
+	<link rel="stylesheet" type="text/css" href="../public/css/style-login.css" >
+	<script src="../public/js/queryString.jquery.min.js"></script>
 <!--===============================================================================================-->
 </head>
 <body>
@@ -99,8 +100,8 @@ if (!empty($_SESSION)) {
 						</div>
 
 					</form>
-					
 				</div>
+
 				<div class="card-footer">
 					<div class="d-flex justify-content-center links">
 						Não tem conta? <a href="cadastro.php" style="color:#FF8C00"> Cadastre-se!</a>
@@ -109,8 +110,31 @@ if (!empty($_SESSION)) {
 						<a href="esqueceuSenha.php" style="color:#FF8C00">Esqueci minha senha</a>
 					</div>
 				</div>
+
+				<div class="row mt-5">
+					<div class="col-12">
+						<div class="alert alert-danger d-none" role="alert">
+							<h5 class="alert-heading">Desculpe, um erro ocorreu</h5>
+							<span id="msg-error"></span>
+						</div>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
+
+
+	<script>  
+    $(document).ready(function () {
+			var queryString = $.currentQueryString();
+			if(Object.keys(queryString).length !== 0)
+			{
+				$('.alert-danger').removeClass("d-none");
+				$('#msg-error').html(queryString.error);
+			}
+    });  
+	</script>  
+
 </body>
 </html>
