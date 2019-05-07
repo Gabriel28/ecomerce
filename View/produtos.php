@@ -184,13 +184,11 @@ ALERTA_ERRO;
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img 
-							src="<?= !is_null($produto['caminhoImagemProduto']) ?
-							$produto['caminhoImagemProduto'] : '../public/images/jogoAnonimo.jpg'?>" 
-							alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal2">
-								Ampliar&nbsp;<i class="fa fa-search-plus"></i>
+							<a href="product-detail.php?nomeproduto=<?=$produto['nomeProduto']?>&plataforma=<?= $produto['plataformaAcronimo']?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+								<img 
+								src="<?= !is_null($produto['caminhoImagemProduto']) ?
+								$produto['caminhoImagemProduto'] : '../public/images/jogoAnonimo.jpg'?>" 
+								alt="IMG-PRODUCT">
 							</a>
 						</div>
 

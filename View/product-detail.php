@@ -339,12 +339,28 @@ ALERTA_ERRO;
 						</div>
 ALERTA_ERRO;
 					}
+					
+					$i = 0;
+					$numeroDeIndicacao = 0;
 					$qtdMaxDeIndicacoes = 4;
-					for ($i=0; $i < $qtdMaxDeIndicacoes ; $i++):
-						# code...
+
+					//Trato as indicações para o usuário
+					//Não exibo um produto que ele já está olhando e 
+					//não percorro mais do que foi retornado
+					while ($numeroDeIndicacao < $qtdMaxDeIndicacoes && $i < count($produtoRetornado)):
+						
+						//Se o produto vigente é o mesmo produto que está
+						//sendo exibido na tela de detalhes, não coloco ele como indicações
+						if($produtoRetornado[$i]['nomeProduto'] == $_GET['nomeproduto']
+						&& $produtoRetornado[$i]['plataformaAcronimo'] == $_GET['plataforma'])
+						{
+							$i++;
+							continue;
+						}
+						$numeroDeIndicacao++;
 				?>
 					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
+						
 						<div class="block2">
 							<div class="block2-pic hov-img0">
 								<a href="product-detail.php?nomeproduto=<?=$produtoRetornado[$i]['nomeProduto']?>&plataforma=<?= $produtoRetornado[$i]['plataformaAcronimo']?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
@@ -368,11 +384,9 @@ ALERTA_ERRO;
 					</div>
 
 				<?php
-					endfor;
+					$i++;
+					endwhile;
 				?>
-					
-					
-					
 				</div>
 			</div>
 		</div>
