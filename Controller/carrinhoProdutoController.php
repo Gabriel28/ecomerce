@@ -46,6 +46,7 @@ class CarrinhoProdutoController {
         session_start();
         $carrinhoProdutoModel->setUsuarioId($_SESSION["usuarioId"]);
         $carrinhoProdutoModel->setProdutoId($produto[0]['produtoId']);
+        $carrinhoProdutoModel->setQtdProduto($_POST['quantidade']);
         try {
             $carrinhoProdutoModel->incluirProdutoCarrinho();
             echo 'true';
