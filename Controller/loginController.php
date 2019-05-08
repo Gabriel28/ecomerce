@@ -8,8 +8,8 @@ use EcommerceModel\UsuarioModel;
 //outras Exceptions
 use Exception;
 
-if($_POST) {
-
+if($_POST && $_POST['origem'] != 'cadastrar') {
+    var_dump($_POST);
     switch ($_POST['origem']) {
         case 'logar':
             if( 
