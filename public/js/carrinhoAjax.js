@@ -1,8 +1,4 @@
 function adicionarProduto(vNomeProduto, vQuantidade, vPlataforma){
-    console.log(vQuantidade);
-    console.log(vNomeProduto);
-    console.log(vPlataforma);
-
     $.ajax({
         method: "POST",
         url: "../Controller/carrinhoProdutoController.php",
