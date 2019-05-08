@@ -70,91 +70,6 @@ use EcommerceController\ProdutoController;
 		</div>
 	</header>
 
-	<!-- Cart -->
-	<div class="wrap-header-cart js-panel-cart">
-		<div class="s-full js-hide-cart"></div>
-
-		<div class="header-cart flex-col-l p-l-65 p-r-25">
-			<div class="header-cart-title flex-w flex-sb-m p-b-8">
-				<span class="mtext-103 cl2">
-					Your Cart
-				</span>
-
-				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
-					<i class="zmdi zmdi-close"></i>
-				</div>
-			</div>
-			
-			<div class="header-cart-content flex-w js-pscroll">
-				<ul class="header-cart-wrapitem w-full">
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="../public/images/item-cart-01.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								White Shirt Pleat
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $19.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="../public/images/item-cart-02.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Converse All Star
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $39.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="../public/images/item-cart-03.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Nixon Porter Leather
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $17.00
-							</span>
-						</div>
-					</li>
-				</ul>
-				
-				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40">
-						Total: $75.00
-					</div>
-
-					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							View Cart
-						</a>
-
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Check Out
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
 
 	<!-- breadcrumb -->
 	<div class="container d-none d-lg-block">
@@ -230,26 +145,26 @@ ALERTA_ERRO;
 							<?= $produtoRetornado[0]['nomeProduto']?>
 						</h1>
 
-						<h5 class="cl2 js-name-detail p-b-14">
+						<h5 class="cl2 p-b-14">
 							Valor: R$
-						
-							<span class="mtext-106 cl2" id="valorProd">
+							<span class="mtext-106 cl2 js-price-detail" id="valorProd">
 								<?= number_format($produtoRetornado[0]['precoProduto'], 2, ',', '.') ?>
 							</span>
 						</h5>
 
-						<h5 class="cl2 js-name-detail p-b-14">
+						<h5 class="cl2 p-b-14">
 							Quantidade em estoque: 
-							<span class="mtext-106 cl2">
+							<span class="mtext-106 js-stock-detail cl2">
 								<?= $produtoRetornado[0]['qtdUnidades'] ?>
 							</span>
 						</h5>
 
-						<h5 class="cl2 js-name-detail p-b-14">
+						<h5 class="cl2 p-b-14">
 							Plataforma: 
-							<span class="mtext-106 cl2">
+							<span class="mtext-106 js-platform-detail cl2">
 								<?= $produtoRetornado[0]['nomePlataforma'] ?>
 							</span>
+							<input type="hidden" name="acronimoPlataforma" disabled value="<?= $produtoRetornado[0]['plataformaAcronimo']?>">
 						</h5>
 						
 						<!--  -->
@@ -271,15 +186,15 @@ ALERTA_ERRO;
 								<?php
 									if(!empty($_SESSION)):
 								?>
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-										Adicionar ao carrinho
+									<button onclick="pegarDadosEAdicionarCarrinho()" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+										Colocar no carrinho&nbsp;<i class="fa fa-cart-plus "></i>
 									</button>
 								<?php
 									else:
 								?>
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+									<a href="login.php" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
 										Logue-se para adicionar ao carrinho
-									</button>
+									</a>
 								<?php
 									endif;
 								?>
@@ -397,16 +312,24 @@ ALERTA_ERRO;
 
 	<script src="../public/js/queryString.jquery.min.js"></script>
 	<script src="../public/js/exibicaoValoresProdutoDetalhe.js"></script>
+	<script src="../public/js/carrinhoAJax.js"></script>
 
 	<script>  
     $(document).ready(function () {
 		var queryString = $.currentQueryString();
-		if(Object.keys(queryString).length !== 0)
-		{
+		if(Object.keys(queryString).length !== 0) {
 			produto = queryString.nomeproduto
 			$(document).attr("title", produto.toUpperCase()+" - BRAZIL GAMING WORLD");
 		}
-    });  
+		}); 
+		
+		function pegarDadosEAdicionarCarrinho(){
+			var qtdSelecionado = parseInt($('.num-product').val(), 10)
+			var nomeProduto = $('.js-name-detail').html().trimLeft().trimRight();
+			// var plataforma = $('.js-platform-detail').html().trimLeft().trimRight();
+			var plataformaAcronimo = $("input[name=acronimoPlataforma]").val();
+			adicionarProduto(nomeProduto, qtdSelecionado, plataformaAcronimo);
+		}
 	</script>  
 </body>
 </html>
