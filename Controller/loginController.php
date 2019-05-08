@@ -67,6 +67,7 @@ class LoginController{
         unset($_SESSION["usuarioId"]);
         unset($_SESSION["emailUsuario"]);
         unset($_SESSION["nomeUsuario"]);
+        session_destroy();
 
         header("location:../View");
     }

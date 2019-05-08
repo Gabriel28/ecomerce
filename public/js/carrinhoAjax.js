@@ -18,3 +18,26 @@ function adicionarProduto(vNomeProduto, vQuantidade, vPlataforma){
         alert('Não deu para gravar')
     })
 }
+
+function removerProduto(vProdutoId){
+    //alert('removeu')
+    $.ajax({
+        method: "POST",
+        url: "../Controller/carrinhoProdutoController.php",
+        data: { produtoId: vProdutoId, 
+                origem:     'excluir'
+             }
+    })
+    .done(function(msg){
+        if(msg =='true') {
+            window.location.href = "produtos.php?acao=exclusao&status=success";
+        }
+        else
+            window.location.href = "produtos.php?acao=exclusao&status=error";
+            
+    })
+    .fail(function(){
+        window.location.href = "produtos.php?acao=exclusao&status=error";
+        //swal("Remoção", "Falha ao solicitar a remoção do produto :(", "error")
+    })
+}

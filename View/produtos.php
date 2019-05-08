@@ -197,16 +197,24 @@ ALERTA_ERRO;
 		
 
 <?php include_once("Template/rodape.php"); ?>
+
 <script src="../public/js/queryString.jquery.min.js"></script>
 <script>
     $(document).ready(function () {
 			var queryString = $.currentQueryString();
+
 			if(Object.keys(queryString).length !== 0)
 			{
-				if(queryString['status'] == 'success')
+				if(queryString['status'] == 'success' && 'produto' in queryString)
 					swal(queryString['produto'], "foi adicionado ao carrinho !", "success")
-				else
+				
+					else if(queryString['status'] == 'error' && 'produto' in queryString)
 					swal(queryString['produto'], "não foi adicionado ao carrinho ! Algum erro ocorreu", "error")
+
+				if(queryString['acao'] == 'exclusao' && queryString['status'] == 'success')
+					swal("Remoção", "Produto foi removido com sucesso !", "success")
+				else if(queryString['acao'] == 'exclusao' && queryString['status'] == 'error')
+					swal("Remoção", "Falha ao remover produto :(", "error")
 			}
     });  
 	

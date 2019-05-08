@@ -1,6 +1,4 @@
 <?php
-
-
 error_reporting(0);
 
 session_start();
@@ -12,11 +10,12 @@ $carrinhoPendente = new CarrinhoProdutoController();
 $_POST['origem'] = 'pesquisar';
 $_POST['usuarioId'] = $_SESSION["usuarioId"];
 $_POST['statusCarrinho'] = 'Pendente';
+
 try {
 	$carrinhoProduto = $carrinhoPendente->pesquisarCarrinho();
 	$qtdProdutos = count($carrinhoProduto);
 } catch (Exception $th) {
-	//throw $th;
+	$qtdProdutos = 0;
 }
 ?>
 
@@ -34,7 +33,8 @@ try {
 					<?php 
 						
 						// Valido se o usuário está logado ou não
-						if(!empty($_SESSION)) {
+						if(!empty($_SESSION) && isset($_SESSION["usuarioId"])) {
+							
 							echo 
 							'<a href="#" class="flex-c-m trans-04 p-lr-25">
 								Bem vindo(a)&nbsp
@@ -63,7 +63,7 @@ try {
 					</a>
 
 					<?php
-						if(!empty($_SESSION)) {
+						if(!empty($_SESSION) && isset($_SESSION["usuarioId"])) {
 							echo <<<LOGOUT
 							<form id="logout" action="../Controller/loginController.php" method="POST" style="margin-left:-10px;">
 								<a href="#" class="flex-c-m trans-04 p-lr-25" onclick="document.getElementById('logout').submit();">Logout</a>
@@ -96,12 +96,12 @@ LOGOUT;
 							<a href="produtos.php"> Todos os Games</a>
 						</li>
 						<?php
-							if(!empty($_SESSION)) {
-								echo "
-								<li>
-									<a href='carrinho.php'>Ver Carrinho</a>
-								</li>";
-							}
+							// if(!empty($_SESSION) && isset($_SESSION["usuarioId"])) {
+							// 	echo "
+							// 	<li>
+							// 		<a href='carrinho.php'>Ver Carrinho</a>
+							// 	</li>";
+							// }
 						?>
 						<li>
 							<a href="contato.php">Contato</a>
@@ -113,7 +113,7 @@ LOGOUT;
 				<div class="wrap-icon-header flex-w flex-r-m">	
 					<?php
 						
-						if(!empty($_SESSION)) {
+						if(!empty($_SESSION) && isset($_SESSION["usuarioId"])) {
 							echo "
 							<div class='icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart' data-notify='0'>
 								<span class='hov-cl1 badge badge-pill badge-light'>
@@ -142,7 +142,7 @@ LOGOUT;
 		<!-- Icon -->
 		<div class="wrap-icon-header flex-w flex-r-m">	
 				<?php
-					if(!empty($_SESSION)) {
+					if(!empty($_SESSION) ) {
 						echo "
 						<div class='icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart' data-notify='0'>
 							<span class='hov-cl1 badge badge-pill badge-light'>
@@ -236,10 +236,10 @@ LOGOUT;
 
 			<?php
 				if(!empty($_SESSION)) {
-					echo "
-					<li>
-						<a href='carrinho.php'>Ver Carrinho</a>
-					</li>";
+					// echo "
+					// <li>
+					// 	<a href='carrinho.php'>Ver Carrinho</a>
+					// </li>";
 				}
 			?>
 
@@ -289,11 +289,12 @@ LOGOUT;
 			<ul class="header-cart-wrapitem w-full">
 
 				<?php
-					for ($i=0; $i < $qtdProdutos; $i++): 		
+					for ($i=0; $qtdProdutos > 0 && $i < $qtdProdutos; $i++): 	
 				?>
 				<!-- Produto do carrinho -->
 				<li class="header-cart-item flex-w flex-t m-b-12">
-					<div class="header-cart-item-img">
+					<div class="header-cart-item-img" id="<?=$carrinhoProduto[$i]['produtoId']?>" 
+					onclick="removerProduto(this.id)">
 						<img src="<?= $carrinhoProduto[$i]['CaminhoimagemProduto']?>" alt="IMG">
 					</div>
 
@@ -311,6 +312,7 @@ LOGOUT;
 				<?php
 					$precoTotal += $carrinhoProduto[$i]['totalRS'];
 					endfor;
+					
 				?>
 			</ul>
 			
@@ -320,22 +322,26 @@ LOGOUT;
 				<!-- Valor total -->
 				<div class="header-cart-total w-full p-tb-40">
 					Total: <?= number_format($precoTotal, 2, ',', '.') ?>
+					
 				</div>
 
 				<div class="header-cart-buttons flex-w w-full">
-
-					<!-- Visualizar o carrinho -->
-					<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn2 p-lr-15 trans-04 m-r-8 m-b-10">
-						Visualizar carrinho
-					</a>
 
 					<!-- Visualizar a compra -->
 					<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg1 bor2 hov-btn2 p-lr-15 trans-04 m-b-10">
 						Finalizar a compra
 					</a>
+
+					<?php
+						//$_SESSION['produtoCarrinho'] = $ArrayprodutoId;
+						
+						//var_dump($_SESSION['produtoCarrinho'] ) ;
+					?>
 				</div>
 			</div>
 
 		</div>
 	</div>
 </div>
+
+<script src="../public/js/carrinhoAJax.js"></script>
