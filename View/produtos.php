@@ -69,7 +69,7 @@ define('VALOR_DOLAR_EUA', 3.941);
 	</header>
 
 	<!-- Produto -->
-	<div class="bg0 m-t-23 p-b-140">
+	<div class="bg0 m-t-23">
 		<div class="container">
 
 		<?php
