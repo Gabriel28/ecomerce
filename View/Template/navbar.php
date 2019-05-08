@@ -1,7 +1,25 @@
-<?php 
+<?php
+
+
 error_reporting(0);
 
-session_start();?>
+session_start();
+
+require_once("../Controller/carrinhoProdutoController.php");
+use EcommerceController\CarrinhoProdutoController;
+
+$carrinhoPendente = new CarrinhoProdutoController();
+$_POST['origem'] = 'pesquisar';
+$_POST['usuarioId'] = $_SESSION["usuarioId"];
+$_POST['statusCarrinho'] = 'Pendente';
+try {
+	$carrinhoProduto = $carrinhoPendente->pesquisarCarrinho();
+	$qtdProdutos = count($carrinhoProduto);
+} catch (Exception $th) {
+	//throw $th;
+}
+?>
+
 <nav>
 	<!-- Header desktop -->
 	<div class="container-menu-desktop">
@@ -94,16 +112,20 @@ LOGOUT;
 				<!-- Icon header -->
 				<div class="wrap-icon-header flex-w flex-r-m">	
 					<?php
+						
 						if(!empty($_SESSION)) {
 							echo "
-							<div class='icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart' data-notify='0'>
-								<i class='zmdi zmdi-shopping-cart'></i>
+							<div class='icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart' data-notify='0'>
+								<span class='hov-cl1 badge badge-pill badge-light'>
+									<i class='zmdi zmdi-shopping-cart'></i>
+									<span id='produtosAdiconados'>$qtdProdutos</span>
+								</span>
 							</div>";
 						}
 					?>	
 				</div>
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-					<i class="zmdi zmdi-search">
+					<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+						<i class="zmdi zmdi-search">
 					</i>
 				</div>
 			</nav>
@@ -122,8 +144,11 @@ LOGOUT;
 				<?php
 					if(!empty($_SESSION)) {
 						echo "
-						<div class='icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart' data-notify='0'>
-							<i class='zmdi zmdi-shopping-cart'></i>
+						<div class='icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart' data-notify='0'>
+							<span class='hov-cl1 badge badge-pill badge-light'>
+								<i class='zmdi zmdi-shopping-cart'></i>
+								<span id='produtosAdiconados'>$qtdProdutos</span>
+							</span>
 						</div>";
 					}
 				?>	
@@ -235,8 +260,82 @@ LOGOUT;
 				<button class="flex-c-m trans-04">
 					<i class="zmdi zmdi-search"></i>
 				</button>
-				<input class="plh3" type="text" name="search" placeholder="O que busca?...">
+				<input class="plh3" type="text" name="search" placeholder="O que busca ?...">
 			</form>
 		</div>
 	</div>
 </nav>
+
+<!-- Carrinho -->
+<div class="wrap-header-cart js-panel-cart">
+	<div class="s-full js-hide-cart"></div>
+
+	<div class="header-cart flex-col-l p-l-65 p-r-25">
+		<div class="header-cart-title flex-w flex-sb-m p-b-8">
+			
+			<span class="mtext-103 cl2">
+				Seu carrinho <i class="fa fa-shopping-cart"></i>
+			</span>
+
+			<!-- Fechar carrinho -->
+			<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+				<i class="zmdi zmdi-close"></i>
+			</div>
+		</div>
+		
+		<div class="header-cart-content flex-w js-pscroll">
+
+			<!-- Lista de produtos -->
+			<ul class="header-cart-wrapitem w-full">
+
+				<?php
+					for ($i=0; $i < $qtdProdutos; $i++): 		
+				?>
+				<!-- Produto do carrinho -->
+				<li class="header-cart-item flex-w flex-t m-b-12">
+					<div class="header-cart-item-img">
+						<img src="<?= $carrinhoProduto[$i]['CaminhoimagemProduto']?>" alt="IMG">
+					</div>
+
+					<div class="header-cart-item-txt p-t-8">
+						<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+							<?= $carrinhoProduto[$i]['nomeProduto']?>
+						</a>
+
+						<span class="header-cart-item-info">
+							<?= $carrinhoProduto[$i]['qtdProduto']?> x R$ <?= number_format($carrinhoProduto[$i]['precoProduto'], 2, ',', '.')?>
+						</span>
+					</div>
+				</li>
+
+				<?php
+					$precoTotal += $carrinhoProduto[$i]['totalRS'];
+					endfor;
+				?>
+			</ul>
+			
+			<!-- Footer do carrinho -->
+			<div class="w-full">
+
+				<!-- Valor total -->
+				<div class="header-cart-total w-full p-tb-40">
+					Total: <?= number_format($precoTotal, 2, ',', '.') ?>
+				</div>
+
+				<div class="header-cart-buttons flex-w w-full">
+
+					<!-- Visualizar o carrinho -->
+					<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn2 p-lr-15 trans-04 m-r-8 m-b-10">
+						Visualizar carrinho
+					</a>
+
+					<!-- Visualizar a compra -->
+					<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg1 bor2 hov-btn2 p-lr-15 trans-04 m-b-10">
+						Finalizar a compra
+					</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

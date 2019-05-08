@@ -68,41 +68,6 @@ define('VALOR_DOLAR_EUA', 3.941);
 		</div>
 	</header>
 
-	<!-- Carrinho -->
-	<div class="wrap-header-cart js-panel-cart">
-		<div class="s-full js-hide-cart">
-		</div>
-
-		<div class="header-cart flex-col-l p-l-65 p-r-25">
-			<div class="header-cart-title flex-w flex-sb-m p-b-8">
-				<span class="mtext-103 cl2">
-					Seu Carrinho
-				</span>
-
-				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
-					<i class="zmdi zmdi-close"></i>
-				</div>
-			</div>
-			
-			<div class="header-cart-content flex-w js-pscroll">
-				<ul class="header-cart-wrapitem w-full">
-					<li class="header-cart-item flex-w flex-t m-b-12">
-
-					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							Ver Carrinho
-						</a>
-
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Check Out
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
 	<!-- Produto -->
 	<div class="bg0 m-t-23 p-b-140">
 		<div class="container">
@@ -184,13 +149,11 @@ ALERTA_ERRO;
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img 
-							src="<?= !is_null($produto['caminhoImagemProduto']) ?
-							$produto['caminhoImagemProduto'] : '../public/images/jogoAnonimo.jpg'?>" 
-							alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal2">
-								Ampliar&nbsp;<i class="fa fa-search-plus"></i>
+							<a href="product-detail.php?nomeproduto=<?=$produto['nomeProduto']?>&plataforma=<?= $produto['plataformaAcronimo']?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+								<img 
+								src="<?= !is_null($produto['caminhoImagemProduto']) ?
+								$produto['caminhoImagemProduto'] : '../public/images/jogoAnonimo.jpg'?>" 
+								alt="IMG-PRODUCT">
 							</a>
 						</div>
 
@@ -234,3 +197,17 @@ ALERTA_ERRO;
 		
 
 <?php include_once("Template/rodape.php"); ?>
+<script src="../public/js/queryString.jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+			var queryString = $.currentQueryString();
+			if(Object.keys(queryString).length !== 0)
+			{
+				if(queryString['status'] == 'success')
+					swal(queryString['produto'], "foi adicionado ao carrinho !", "success")
+				else
+					swal(queryString['produto'], "não foi adicionado ao carrinho ! Algum erro ocorreu", "error")
+			}
+    });  
+	
+</script>
