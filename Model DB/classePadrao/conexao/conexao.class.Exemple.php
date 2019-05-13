@@ -160,6 +160,22 @@ namespace EcommerceConection{
             }
         }
 
+        protected function excluir($arrayParameters) {
+            try {
+                if (!$this->estaConectadoBD())
+                    //Conecto no servidor caso esteja desconectado
+                    $this->abrirConexao();
+
+                $stmt = $this->dbConexao->
+                prepare($this->preparaChamadaProcedure($this->deleteProcedure, count($arrayParameters)) );
+
+                $count = $stmt->execute($arrayParameters);
+                return $count;
+            } catch (Exception $th) {
+                throw $th;
+            }
+        }
+
          /* Function preparaChamadaProcedure
          * Monta a chamada de uma procedure com a quantidade de parâmetros
          * @param nome da procedure e a quantidade de parâmetros que essa procedure pede

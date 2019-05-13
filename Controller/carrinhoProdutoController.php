@@ -21,6 +21,10 @@ if($_POST) {
             $carrinho = new CarrinhoProdutoController();
             $carrinho->pesquisarCarrinho();
             break;
+        case 'excluir':
+            $carrinho = new CarrinhoProdutoController();
+            $carrinho->excluirProduto();
+            break;
         default:
             
             break;
@@ -63,6 +67,21 @@ class CarrinhoProdutoController {
             return $carrinhoProdutoModel->pesquisarCarrinho();
         } catch (Exception $th) {
             throw $th;
+        }
+        
+    }
+
+    public function excluirProduto(){
+        $carrinhoProdutoModel = new CarrinhoProdutoModel("../Model DB/DBconfig.ini");
+
+        session_start();
+        $carrinhoProdutoModel->setUsuarioId($_SESSION['usuarioId']);
+        $carrinhoProdutoModel->setProdutoId($_POST['produtoId']);
+        try {
+            $carrinhoProdutoModel->excluirProdutoCarrinho();
+            echo 'true';
+        } catch (Exception $th) {
+            echo 'false';
         }
         
     }

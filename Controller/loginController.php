@@ -8,8 +8,8 @@ use EcommerceModel\UsuarioModel;
 //outras Exceptions
 use Exception;
 
-if($_POST) {
-
+if($_POST && $_POST['origem'] != 'cadastrar') {
+    var_dump($_POST);
     switch ($_POST['origem']) {
         case 'logar':
             if( 
@@ -67,6 +67,7 @@ class LoginController{
         unset($_SESSION["usuarioId"]);
         unset($_SESSION["emailUsuario"]);
         unset($_SESSION["nomeUsuario"]);
+        session_destroy();
 
         header("location:../View");
     }

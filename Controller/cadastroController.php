@@ -26,7 +26,6 @@ if(!empty($_POST)) {
                 $cadastro = new CadastroController();
                 try {
                     if($cadastro->cadastrarUsuario($dadosValidados)) {
-                        echo 'Cadastrado';
                         $autenticar = new LoginController();
                         
                         //Monto a origem como logar para que possa ser autenticado o usuário
@@ -66,9 +65,9 @@ class CadastroController{
         $usuarioModel->setBairro($arrayDados['bairro']);
         $usuarioModel->setCidade($arrayDados['cidade']);
 
-
         try {
-             if($usuarioModel->cadastrarUsuario() == 1){
+            $retorno = $usuarioModel->cadastrarUsuario();
+             if($retorno == 1){
                  return true;
              }else {
                 throw new Exception("Não foi possível realizar o cadastro agora, tente novamente mais tarde");

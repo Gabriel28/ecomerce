@@ -35,7 +35,7 @@ class CarrinhoProdutoModel extends Conexao{
         $this->selectProcedure = 'pr_carrinhoProduto_sel';
         $this->updateProcedure = '';
         $this->insertProcedure = 'pr_carrinhoProduto_ins';
-        $this->deleteProcedure = '';
+        $this->deleteProcedure = 'pr_carrinhoProduto_exc';
     }
 
     public function __destruct() {
@@ -159,6 +159,18 @@ class CarrinhoProdutoModel extends Conexao{
         try
         {
            return $this->pesquisar($this->parametros);
+        }
+        catch(Exception $e)
+        {
+            throw $e;
+        }
+    }
+
+    public function excluirProdutoCarrinho() {
+        $this->setColunas();
+        try
+        {
+           return $this->excluir($this->parametros);
         }
         catch(Exception $e)
         {
